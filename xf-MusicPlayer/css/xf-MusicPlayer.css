@@ -147,7 +147,6 @@
   z-index: 99;
   transition: all 0.5s;
   cursor: url(../other/default.cur), auto;
-  background-color: rgba(100,136,186,0.4) !important;
 }
 #xf-MusicPlayer .xf-MusicPlayer-Main .pointer-cursor {
   cursor: url(../other/pointer.cur), auto;
@@ -312,14 +311,9 @@
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-topControl .xf-introduce {
   --introduceWidth: calc(var(--rightSideWidth) - 30px);
   width: var(--introduceWidth);
-  margin: 0 auto;
+  margin: var(--BoxLeftAndRightMargin);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-topControl .xf-introduce .xf-songName,
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-topControl .xf-introduce .xf-singer {
   width: var(--introduceWidth);
@@ -328,13 +322,11 @@
   word-break: break-all;
   white-space: nowrap;
 }
-
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-topControl .xf-introduce .xf-songName {
   color: var(--playerColor-8);
   font-size: 1.5em;
   font-weight: bold;
 }
-
 #xf-MusicPlayer .xf-MusicPlayer-Main .xf-insideSong .xf-musicControl .xf-topControl .xf-introduce .xf-singer {
   font-size: 1em;
   margin-top: 5px;
@@ -598,6 +590,7 @@
   overflow: hidden;
   transition: all 0.5s;
   cursor: url(../other/default.cur), auto;
+  background-color: rgb(100,136,186,0.4) !important;
 }
 #xf-lyric:hover {
   height: 2.5em;
