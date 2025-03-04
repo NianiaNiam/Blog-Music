@@ -147,7 +147,7 @@
   z-index: 99;
   transition: all 0.5s;
   cursor: url(../other/default.cur), auto;
-  background-color: rgb(100,136,186,0.4) !important
+  background-color: rgba(100,136,186,0.4) !important
 }
 #xf-MusicPlayer .xf-MusicPlayer-Main .pointer-cursor {
   cursor: url(../other/pointer.cur), auto;
