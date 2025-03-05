@@ -150,17 +150,9 @@ window.addEventListener('DOMContentLoaded', function () {
             
             const setTimeoutPromise = delay => new Promise(resolve => setTimeout(resolve, delay))
 
-            const playMusic = () => {
-    xfMusicAudio.play().catch(error => console.warn(`浏览器默认限制了自动播放：${error}`));
-    setCk(currentSongIndex, false);
-    addPlaying();
-};
+            const playMusic = () => xfMusicAudio.play().catch(error => console.warn(`浏览器默认限制了自动播放：${error}`))
 
-            const pauseMusic = () => {
-    xfMusicAudio.pause();
-    setCk(currentSongIndex, true);
-    removebePlaying();
-};
+            const pauseMusic = () => xfMusicAudio.pause()
 
             const getEle = dom => MusicPlayer.querySelector(dom)
                 , MusicPlayerMain = getEle('.xf-MusicPlayer-Main')
@@ -677,16 +669,15 @@ window.addEventListener('DOMContentLoaded', function () {
 
                             updateSong(currentSongIndex)
 
- const setCk = (id, isPaused) => {
-    detectionCookies(() => {
-        cookieData = {
-            musicId: id,
-            musicTime: xfMusicAudio.currentTime,
-            isPaused: isPaused
-        };
-        setCookie(cookieName, JSON.stringify(cookieData), 30);
-    });
-};
+                            const setCk = id => {
+                                detectionCookies(() => {
+                                    cookieData = {
+                                        musicId: id,
+                                        musicTime: 0
+                                    }
+                                    setCookie(cookieName, JSON.stringify(cookieData), 30)
+                                })
+                            }
 
                             const prevMusic = () => {
                                 isFunctionTriggered = true
@@ -747,23 +738,20 @@ window.addEventListener('DOMContentLoaded', function () {
                                 }
                             })
 
-const loadedMetadataHandler = () => {
-    detectionCookies(() => {
-        if (!rsCookie) {
-            return;
-        }
-        const { musicTime, isPaused } = JSON.parse(rsCookie);
-        const duration = xfMusicAudio.duration;
-        xfMusicAudio.currentTime = musicTime >= duration ? 0 : musicTime;
-        if (!isPaused) {
-            playMusic();
-        } else {
-            removebePlaying();
-        }
-    });
+                            const loadedMetadataHandler = () => {
+                                detectionCookies(() => {
+                                    if (!rsCookie) {
+                                        return
+                                    }
+                                    const { musicTime } = JSON.parse(rsCookie)
+                                    const duration = xfMusicAudio.duration
+                                    xfMusicAudio.currentTime = musicTime >= duration ? 0 : musicTime
+                                    playMusic()
+                                })
 
-    xfMusicAudio.removeEventListener('loadedmetadata', loadedMetadataHandler);
-};
+                                xfMusicAudio.removeEventListener('loadedmetadata', loadedMetadataHandler)
+                            }
+
                             xfMusicAudio.addEventListener('loadedmetadata', loadedMetadataHandler)
 
                             const currentMusic = () => {
